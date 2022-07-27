@@ -1,11 +1,13 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+from art import logo
+print(logo)
 
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 while (direction != "encode") and (direction != "decode"):
   print("there is only two ways to do this either encode or decode")
   direction = input("Type 'encode' to encrypt, type 'decode' to   decrypt:\n")
   
-text = input("Type your message:\n").lower()
+text = input("Type your word:\n").lower()
 shift = int(input("Type the shift number less than 27:\n"))
 while shift > 26:
   shift = int(input("Type the shift number less than 27:\n"))
@@ -23,10 +25,15 @@ while shift > 26:
 def encrypt (plain_text, shift_number):
   cipher_text = ""
   for letter in plain_text:
-    position = alphabet.index(letter)
-    new_position = position + shift_number
-    new_letter = alphabet[new_position]
-    cipher_text += new_letter  
+    if letter in alphabet:
+      position = alphabet.index(letter)
+      new_position = position + shift_number
+      new_letter = alphabet[new_position]
+      cipher_text += new_letter 
+    else:
+      cipher_text += letter
+      
+
   print(f"The encoded text is {cipher_text}")  
   
 
@@ -36,10 +43,13 @@ def encrypt (plain_text, shift_number):
 def decrypt (plain_text, shift_number):
   cipher_text = ""
   for letter in plain_text:
-    position = alphabet.index(letter)
-    new_position = position - shift_number
-    new_letter = alphabet[new_position]
-    cipher_text += new_letter  
+    if letter in alphabet:
+      position = alphabet.index(letter)
+      new_position = position - shift_number
+      new_letter = alphabet[new_position]
+      cipher_text += new_letter 
+    else:
+      cipher_text += letter
   print(f"The encoded text is {cipher_text}")
 
 #logical oeprator to encode or decode
